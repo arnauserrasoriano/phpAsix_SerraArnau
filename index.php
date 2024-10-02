@@ -60,11 +60,11 @@
                          "releaseYear" => "1968"
                      ],
                  ];
-            echo $books[1];
+ //           echo $books[1];
 //            var_dump($books);
             ?>
         </h1>
-        <p>Llista de pelis:</p>
+        <p>Llista de llibres:</p>
         <ul>
             <?php foreach($books as $book) : ?>
                 <li><?= $book ?></li>
