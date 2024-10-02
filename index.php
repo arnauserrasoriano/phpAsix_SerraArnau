@@ -62,12 +62,61 @@
                  ];
  //           echo $books[1];
 //            var_dump($books);
+                function filterByAuthor($books, $author) {
+                    //creem array
+                    $filteredAuthors = [];
+                    //bucle
+                    foreach ($books as $book) {
+                        //mirem si es l'autor que toca
+                        if ($book["author"] === $author) {
+                            //posem dins l'array
+                            $filteredAuthors[] = $book;
+                        }
+                    }
+                    //retornem l'array
+                    return $filteredAuthors;
+                }
+
+            function filterByYear($books) {
+                //creem array
+                $filteredBooks = [];
+                //bucle
+                foreach ($books as $book) {
+                    //mirem si el llibre es posterior al 1990
+                    if ($book["releaseYear"] >= 1990) {
+                        //posem dins l'array
+                        $filteredBooks[] = $book;
+                    }
+                }
+                //retornem l'array
+                return $filteredBooks;
+            }
             ?>
         </h1>
         <p>Llista de llibres:</p>
         <ul>
             <?php foreach($books as $book) : ?>
-                <li><?= $book ?></li>
+                <li><?= $book['name'] ?> (<?= $book['releaseYear'] ?>) - By <?= $book['author'] ?></li>
+            <?php endforeach; ?>
+        </ul>
+        <p>Llista de llibres de Tolkien en filtro:</p>
+        <ul>
+            <?php foreach($books as $book) : ?>
+                <?php if ($book['author'] === "J. R. R. Tolkien") : ?>
+                    <li><?= $book['name'] ?> (<?= $book['releaseYear'] ?>) - By <?= $book['author'] ?></li>
+                <?php endif;?>
+            <?php endforeach; ?>
+        </ul>
+        <p>Llista de llibres de Tolkien en funcions:</p>
+        <ul>
+            <?php foreach(filterByAuthor($books, "J. R. R. Tolkien") as $book) : ?>
+                    <li><?= $book['name'] ?> (<?= $book['releaseYear'] ?>) - By <?= $book['author'] ?></li>
+            <?php endforeach; ?>
+        </ul>
+    <p>Llista de llibres a partir del 1990:</p>
+        <ul>
+            <?php foreach(filterByYear($books) as $book) : ?>
+                <li><?= $book['name'] ?> (<?= $book['releaseYear'] ?>) - By <?= $book['author'] ?></li>
             <?php endforeach; ?>
         </ul>
     </body>
