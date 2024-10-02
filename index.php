@@ -91,6 +91,11 @@
                 //retornem l'array
                 return $filteredBooks;
             }
+
+            //funcio lambda
+            $filteredBooks = array_filter($books, function ($book) {
+                return $book["releaseYear"] >= 1950 && $book["releaseYear"] <= 1996;
+            });
             ?>
         </h1>
         <p>Llista de llibres:</p>
@@ -113,9 +118,15 @@
                     <li><?= $book['name'] ?> (<?= $book['releaseYear'] ?>) - By <?= $book['author'] ?></li>
             <?php endforeach; ?>
         </ul>
-    <p>Llista de llibres a partir del 1990:</p>
+        <p>Llista de llibres a partir del 1990:</p>
         <ul>
             <?php foreach(filterByYear($books) as $book) : ?>
+                <li><?= $book['name'] ?> (<?= $book['releaseYear'] ?>) - By <?= $book['author'] ?></li>
+            <?php endforeach; ?>
+        </ul>
+        <p>Llista de llibres del 1950 al 1996 en lambda:</p>
+        <ul>
+            <?php foreach($filteredBooks as $book) : ?>
                 <li><?= $book['name'] ?> (<?= $book['releaseYear'] ?>) - By <?= $book['author'] ?></li>
             <?php endforeach; ?>
         </ul>
