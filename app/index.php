@@ -88,3 +88,5 @@
         return $book["releaseYear"] >= 1950 && $book["releaseYear"] <= 1996;
     });
 
+    //cridem a la vista
+    require '../resources/views/index.blade.php';
