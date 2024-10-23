@@ -2,6 +2,8 @@
 //Fitxer per gestionar les rutes
 namespace Core;
 
+use http\Exception\RuntimeException;
+
 class Route
 {
     //creem array per les rutes
@@ -33,12 +35,12 @@ class Route
         }
 
         //si no troba el controlador
-        if(!file_exists($this->routes[$uri])) {
-            throw new \Exception("Route '{$uri}' does not exist.");
+        if (!file_exists($this->routes[$uri])) {
+            throw new RuntimeException("No s'ha trobat el controlador:". $this->routes[$uri]);
         }
 
         //retornem les rutes
-        return $this->routes[$uri];
+        return require $this->routes[$uri];
     }
 
 
