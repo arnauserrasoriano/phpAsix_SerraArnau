@@ -6,7 +6,10 @@
     "autoload": {
         "psr-4": {
             "Core\\": "Core/"
-        }
+        },
+        "files" : [
+            "Core/helpers.php"
+        ]
     },
     "authors": [
         {

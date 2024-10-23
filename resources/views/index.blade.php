@@ -12,36 +12,43 @@
     ?>
 </h1>
 <p>Llista de llibres:</p>
-<ul>
-    <?php foreach($books as $book) : ?>
-    <li><?= $book['name'] ?> (<?= $book['releaseYear'] ?>) - By <?= $book['author'] ?></li>
-    <?php endforeach; ?>
-</ul>
-<p>Llista de llibres de Tolkien en filtro:</p>
-<ul>
-    <?php foreach($books as $book) : ?>
-        <?php if ($book['author'] === "J. R. R. Tolkien") : ?>
-    <li><?= $book['name'] ?> (<?= $book['releaseYear'] ?>) - By <?= $book['author'] ?></li>
-    <?php endif;?>
-    <?php endforeach; ?>
-</ul>
-<p>Llista de llibres de Tolkien en funcions:</p>
-<ul>
-    <?php foreach(filterByAuthor($books, "J. R. R. Tolkien") as $book) : ?>
-    <li><?= $book['name'] ?> (<?= $book['releaseYear'] ?>) - By <?= $book['author'] ?></li>
-    <?php endforeach; ?>
-</ul>
-<p>Llista de llibres a partir del 1990:</p>
-<ul>
-    <?php foreach(filterByYear($books) as $book) : ?>
-    <li><?= $book['name'] ?> (<?= $book['releaseYear'] ?>) - By <?= $book['author'] ?></li>
-    <?php endforeach; ?>
-</ul>
-<p>Llista de llibres del 1950 al 1996 en lambda:</p>
-<ul>
-    <?php foreach($filteredBooks as $book) : ?>
-    <li><?= $book['name'] ?> (<?= $book['releaseYear'] ?>) - By <?= $book['author'] ?></li>
-    <?php endforeach; ?>
-</ul>
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th scope="col">
+                    Id
+                </th>
+                <th scope="col">
+                    Title
+                </th>
+                <th scope="col">
+                    Author
+                </th>
+                <th scope="col">
+                    Year
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($books as $book): ?>
+            <tr>
+                <td>
+                    <?=$book->id;?>
+                </td>
+                <td>
+                        <?=$book->name;?>
+                </td>
+                <td>
+                        <?=$book->author;?>
+                </td>
+                <td>
+                        <?=$book->releaseYear;?>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>

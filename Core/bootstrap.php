@@ -12,18 +12,18 @@ use Core\Route; //carregar la gestió per a l'enrutament
 $routes = require '../routes.php';
 
 //creem variable per carregar les variables d'entorn
-//$dotenv = Dotenv::createImmutable(__DIR__.'/..');
-//$dotenv->load(); //carreguem variables
+$dotenv = Dotenv::createImmutable(__DIR__.'/..');
+$dotenv->load(); //carreguem variables
 
 //enllacem l'arxiu config al contenidor com a config on tenim les variables d'entorn
-//App::bind('config', require '../config.php');
+App::bind('config', require '../config.php');
 
 //enllacem instancia de database
-//App::bind('database', new Database(
-//    Connection::make(
-//        App::get('config')['database']
-//    )
-//));
+App::bind('database', new Database(
+    Connection::make(
+        App::get('config')['database']
+    )
+));
 
 //enllacem instancia rutes
 App::bind('router', (new Route())->define($routes));
