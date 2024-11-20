@@ -9,15 +9,15 @@
 <div>
     <form action="/books/update/<?= $book->id ?>" method="POST">
         <div>
-            <label for="name"></label>
+            <label for="name">Títol</label>
             <input type="text" name="name" id="name" value="<?=$book->name?>">
         </div>
         <div>
-            <label for="author"></label>
+            <label for="author">Autor</label>
             <input type="text" name="author" id="author" value="<?=$book->author?>">
         </div>
         <div>
-            <label for="releaseYear"></label>
+            <label for="releaseYear">Any</label>
             <input type="number" name="releaseYear" id="releaseYear" value="<?=$book->releaseYear?>">
         </div>
         <button type="submit">Editar</button>
