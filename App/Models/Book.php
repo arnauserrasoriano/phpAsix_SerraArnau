@@ -27,6 +27,10 @@ class Book {
             //editem
             $statement = $db->prepare('UPDATE ' . static::$table . ' SET name = :name, author = :author, releaseYear = :releaseYear WHERE id = :id');
             $statement->bindValue(':id', $this->id);
+            $statement->bindValue(':name', $this->name);
+            $statement->bindValue(':author', $this->author);
+            $statement->bindValue(':releaseYear', $this->releaseYear);
+            $statement->execute();
         } else {
             //creem
             $statement = $db->prepare('INSERT INTO '. static::$table . ' (name, author, releaseYear) VALUES (:name, :author, :releaseYear)');

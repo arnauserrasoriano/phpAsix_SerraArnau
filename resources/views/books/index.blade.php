@@ -23,6 +23,9 @@
             <th scope="col">
                 Year
             </th>
+            <th scope="col">
+                Actions
+            </th>
         </tr>
         </thead>
         <tbody>
@@ -39,6 +42,10 @@
             </td>
             <td>
                     <?=$book->releaseYear;?>
+            </td>
+            <td>
+                <a href="/books/edit/<?= $book->id?>">Editar</a>
+                <a href="/books/confirm-delete/<?= $book->id?>">Eliminar</a>
             </td>
         </tr>
         <?php endforeach; ?>
