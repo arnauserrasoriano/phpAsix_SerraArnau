@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Demo ASIX</title>
+    <title>WEB ASIX</title>
 </head>
 <body>
 <h1>Eliminar llibre:</h1>

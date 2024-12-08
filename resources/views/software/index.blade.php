@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demo ASIX - Llibres</title>
-    <style>
+    <title>WEB ASIX</title>
+        <style>
+            /* Estilos generales */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -110,102 +111,75 @@
         }
 
         /* Estilos responsivos */
-        @media screen and (max-width: 768px) {
-            nav {
-                padding: 10px 5px;
+            <!DOCTYPE html>
+            <html lang="es">
+            <head>
+            <meta charset="UTF-8">
+            <title>Demo ASIX</title>
+            <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+            </head>
+            <body class="bg-gray-100">
+            <section>
+            <div class="max-w-7xl mx-auto bg-white shadow-lg py-6 sm:px-6 lg:px-8">
+            <h1 class="text-2xl font-bold mb-6">Eliminar software:</h1>
+            <div>
+            <p class="text-lg mb-4">Estàs segur que vols eliminar aquest software? <strong><?= $hacking_software->name ?></strong>?</p>
+            <form action="/software/delete/<?= $hacking_software->id ?>" method="POST" class="flex items-center space-x-4">
+            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700">Eliminar</button>
+            <a href="/software" class="text-blue-500 hover:text-blue-700">Cancel·lar</a>
+            </form>
+            </div>
+            </div>
+            </section>
+            </body>
+            </html>
 
-            }
-
-            nav a {
-                font-size: 1em;
-                margin: 0 10px;
-            }
-
-            table {
-                font-size: 0.9em;
-            }
-
-            table th, table td {
-                padding: 8px;
-            }
-
-            .create-link {
-                display: block;
-                width: 100%;
-                text-align: center;
-                padding: 12px;
-            }
-
-            .actions a {
-                display: block;
-                width: 100%;
-                text-align: center;
-                padding: 12px;
-                margin-bottom: 5px;
-            }
-
-            footer {
-                padding: 15px;
-                font-size: 0.9em;
-            }
-        }
-
-        @media screen and (max-width: 480px) {
-            nav a {
-                font-size: 0.9em;
-            }
-
-            table th, table td {
-                padding: 6px;
-            }
-
-            .actions a {
-                padding: 10px;
-                font-size: 0.9em;
-            }
-
-            .create-link {
-                padding: 15px;
-                font-size: 1em;
-            }
-        }
-    </style>
+        </style>
 </head>
 <body>
 
 <!-- Barra de navegación -->
 <nav>
     <a href="/home" id="nav-home">Inici</a>
-    <a href="/books" id="nav-books" class="active">Llibres</a>
-    <a href="/software" id="nav-software">Software</a>
+    <a href="/books" id="nav-books">Llibres</a>
+    <a href="/software" id="nav-software" class="active">Software</a>
 </nav>
 
 <!-- Contenido principal -->
 <div class="container">
-    <h2>Llista de llibres:</h2>
-    <a href="/books/create" class="create-link">Crear Llibre</a>
+    <h2>Llista de Programari de Hacking:</h2>
+    <a href="/software/create" class="create-link">Afegir Nou Programari</a>
 
     <div>
         <table>
             <thead>
             <tr>
                 <th scope="col">Id</th>
-                <th scope="col">Título</th>
-                <th scope="col">Autor</th>
-                <th scope="col">Año</th>
-                <th scope="col">Acciones</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Tipus</th>
+                <th scope="col">Descripció</th>
+                <th scope="col">Plataforma</th>
+                <th scope="col">Llicència</th>
+                <th scope="col">Data</th>
+                <th scope="col">URL Oficial</th>
+                <th scope="col">Accions</th>
             </tr>
             </thead>
             <tbody>
-            <?php foreach ($books as $book): ?>
+            <?php foreach ($software as $hacking_software): ?>
             <tr>
-                <td><?=$book->id;?></td>
-                <td><?=$book->name;?></td>
-                <td><?=$book->author;?></td>
-                <td><?=$book->releaseYear;?></td>
+                <td><?=$hacking_software->id;?></td>
+                <td><?=$hacking_software->name;?></td>
+                <td><?=$hacking_software->type;?></td>
+                <td><?=$hacking_software->description;?></td>
+                <td><?=$hacking_software->platform;?></td>
+                <td><?=$hacking_software->license;?></td>
+                <td><?=$hacking_software->data;?></td>
+
+                <td><a href="<?=$hacking_software->official_url;?>" target="_blank">Veure</a></td>
                 <td class="actions">
-                    <a href="/books/edit/<?= $book->id?>" class="edit">Editar</a>
-                    <a href="/books/destroy/<?= $book->id?>" class="delete">Eliminar</a>
+                    <a href="/software/edit/<?= $hacking_software->id?>" class="edit">Editar</a>
+                    <a href="/software/destroy/<?= $hacking_software->id?>" class="delete">Eliminar</a>
                 </td>
             </tr>
             <?php endforeach; ?>
@@ -218,7 +192,6 @@
 <footer>
     <p>&copy; 2024 ASIX. Tots els drets reservats.</p>
 </footer>
-
 <script>
     // Obtener la URL actual
     const currentPath = window.location.pathname;
@@ -244,6 +217,3 @@
     // Llamar a la función para establecer el enlace activo
     setActiveLink();
 </script>
-
-</body>
-</html>

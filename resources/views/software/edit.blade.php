@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Llibre - WEB ASIX</title>
+    <title>Editar Software: <?= $software->name ?></title>
     <style>
-        /* Reutilizar el estilo existente */
         /* Estilos generales */
         body {
             font-family: Arial, sans-serif;
@@ -132,140 +131,163 @@
 
         }
 
-        <style>
-             /* Estilos responsivos para smartphones */
-        @media screen and (max-width: 768px) {
-            /* Ajustar el contenedor principal */
-            .container {
-                width: 95%; /* Más pequeño para pantallas pequeñas */
-                padding: 15px;
-            }
-
-            /* Reducir el tamaño de la barra de navegación */
-            nav {
-                padding: 10px;
-                font-size: 0.9em;
-            }
-
-            nav a {
-                display: block; /* Los enlaces se muestran en columna */
-                margin: 10px 0;
-                font-size: 1em;
-            }
-
-            /* Reducir los márgenes y fuentes de los formularios */
-            form div {
-                margin-bottom: 15px;
-            }
-
-            input[type="text"], input[type="number"], input[type="url"], textarea, input[type="date"] {
-                font-size: 0.9em; /* Reducir ligeramente el tamaño de fuente */
-                padding: 8px;
-            }
-
-            label {
-                font-size: 1em; /* Ajustar el tamaño de la etiqueta */
-            }
-
-            button {
-                font-size: 1em; /* Reducir tamaño del botón */
-                padding: 10px;
-            }
-
-            /* Ajustar el enlace de regreso */
-            .back-link {
-                font-size: 1em;
-                padding: 10px 12px;
-            }
-
-            /* Footer adaptado */
-            footer {
-                font-size: 0.9em;
-                padding: 8px;
-            }
-        }
-
-        @media screen and (max-width: 480px) {
-            /* Contenedor más pequeño aún para pantallas pequeñas */
-            .container {
-                width: 90%;
-            }
-
-            nav a {
-                font-size: 0.85em;
-            }
-
-            button {
-                font-size: 0.9em;
-                padding: 8px;
-            }
-
-            input[type="text"], input[type="number"], input[type="url"], textarea, input[type="date"] {
-                padding: 6px; /* Reducir padding */
-                font-size: 0.85em;
-            }
-
-            footer {
-                font-size: 0.8em;
-            }
-        }
-    </style>
-
     </style>
 </head>
 <body>
 
-<!-- Barra de navegació -->
+<!-- Barra de navegación -->
 <nav>
     <a href="/home" id="nav-home">Inici</a>
-    <a href="/books" id="nav-books" class="active">Llibres</a>
+    <a href="/books" id="nav-books">Llibres</a>
     <a href="/software" id="nav-software">Software</a>
 </nav>
+<style>
+    /* Estilos responsivos para smartphones */
+    @media screen and (max-width: 768px) {
+        /* Ajustar el contenedor principal */
+        .container {
+            width: 95%; /* Más pequeño para pantallas pequeñas */
+            padding: 15px;
+        }
 
-<!-- contingut principal -->
+        /* Reducir el tamaño de la barra de navegación */
+        nav {
+            padding: 10px;
+            font-size: 0.9em;
+        }
+
+        nav a {
+            display: block; /* Los enlaces se muestran en columna */
+            margin: 10px 0;
+            font-size: 1em;
+        }
+
+        /* Reducir los márgenes y fuentes de los formularios */
+        form div {
+            margin-bottom: 15px;
+        }
+
+        input[type="text"], input[type="number"], input[type="url"], textarea, input[type="date"] {
+            font-size: 0.9em; /* Reducir ligeramente el tamaño de fuente */
+            padding: 8px;
+        }
+
+        label {
+            font-size: 1em; /* Ajustar el tamaño de la etiqueta */
+        }
+
+        button {
+            font-size: 1em; /* Reducir tamaño del botón */
+            padding: 10px;
+        }
+
+        /* Ajustar el enlace de regreso */
+        .back-link {
+            font-size: 1em;
+            padding: 10px 12px;
+        }
+
+        /* Footer adaptado */
+        footer {
+            font-size: 0.9em;
+            padding: 8px;
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+        /* Contenedor más pequeño aún para pantallas pequeñas */
+        .container {
+            width: 90%;
+        }
+
+        nav a {
+            font-size: 0.85em;
+        }
+
+        button {
+            font-size: 0.9em;
+            padding: 8px;
+        }
+
+        input[type="text"], input[type="number"], input[type="url"], textarea, input[type="date"] {
+            padding: 6px; /* Reducir padding */
+            font-size: 0.85em;
+        }
+
+        footer {
+            font-size: 0.8em;
+        }
+    }
+</style>
+
+<!-- Contenido principal -->
 <div class="container">
-    <h1>Editar llibre: <?= htmlspecialchars($book->name) ?></h1>
-    <form action="/books/update/<?= htmlspecialchars($book->id) ?>" method="POST">
+    <h1>Editar Software: <?= $software->name ?></h1>
+    <form action="/software/update/<?= $software->id ?>" method="POST">
         <div>
-            <label for="name">Títol</label>
-            <input type="text" name="name" id="name" value="<?= htmlspecialchars($book->name) ?>" required>
+            <label for="name">Nom</label>
+            <input type="text" name="name" id="name" value="<?= $software->name ?>" required>
         </div>
         <div>
-            <label for="author">Autor</label>
-            <input type="text" name="author" id="author" value="<?= htmlspecialchars($book->author) ?>" required>
+            <label for="type">Tipus</label>
+            <input type="text" name="type" id="type" value="<?= $software->type ?>" required>
         </div>
         <div>
-            <label for="releaseYear">Any</label>
-            <input type="number" name="releaseYear" id="releaseYear" value="<?= htmlspecialchars($book->releaseYear) ?>" required>
+            <label for="description">Descripció</label>
+            <textarea name="description" id="description" rows="4" required><?= $software->description ?></textarea>
         </div>
-        <button type="submit">Guardar cambis</button>
+        <div>
+            <label for="platform">Plataforma</label>
+            <input type="text" name="platform" id="platform" value="<?= $software->platform ?>" required>
+        </div>
+        <div>
+            <label for="license">Llicència</label>
+            <input type="text" name="license" id="license" value="<?= $software->license ?>" required>
+        </div>
+        <div>
+            <label for="data">Data</label>
+            <input type="date" name="data" id="data" value="<?= $software->data ?>" required>
+        </div>
+        <div>
+            <label for="official_url">URL Oficial</label>
+            <input type="url" name="official_url" id="official_url" value="<?= $software->official_url ?>" required>
+        </div>
+        <button type="submit">Actualitzar</button>
     </form>
 </div>
 
+<a href="/software" class="back-link">Tornar a la llista de Programari</a>
+
+<!-- Pie de página -->
 <footer>
-    <p>&copy; 2024 ASIX. Tots els drets reservats.</p>
+    <p>&copy; 2024 Demo ASIX. Tots els drets reservats.</p>
 </footer>
 
 <script>
-    // Mismo script para manejar el enlace activo
+    // Obtener la URL actual
     const currentPath = window.location.pathname;
 
+    // Función para eliminar la clase 'active' de todos los enlaces
     function removeActiveClass() {
         const links = document.querySelectorAll('nav a');
         links.forEach(link => link.classList.remove('active'));
     }
 
+    // Añadir la clase 'active' al enlace correspondiente
     function setActiveLink() {
         removeActiveClass();
         if (currentPath.includes('/home')) {
             document.getElementById('nav-home').classList.add('active');
-        } else if (currentPath.includes('/books')) {
-            document.getElementById('nav-books').classList.add('active');
         } else if (currentPath.includes('/software')) {
             document.getElementById('nav-software').classList.add('active');
+        } else if (currentPath.includes('/books')) {
+            document.getElementById('nav-books').classList.add('active');
         }
     }
 
+
+
+    // Llamar a la función para establecer el enlace activo
     setActiveLink();
 </script>
 

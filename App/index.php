@@ -8,7 +8,19 @@ use Core\App;
     $b = 2;
 
     //consultem els registres e la taula books de la base de dades
+try {
     $books = App::get('database')->selectAll('books');
+} catch (Exception $e) {
 
-    //cridem a la vista
+}
+
+try {
+    $books = App::get('database')->selectAll('hacking_software');
+} catch (Exception $e) {
+
+}
+
+
+//cridem a la vista
     require '../resources/views/index.blade.php';
+

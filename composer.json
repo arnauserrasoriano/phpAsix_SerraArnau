@@ -1,5 +1,5 @@
 {
-    "name": "jordivega/phpasix",
+    "name": "arnauserrasoriano/phpAsix_SerraArnau",
     "description": "Projecte PHP Asix",
     "type": "project",
     "require": {
@@ -17,8 +17,8 @@
     },
     "authors": [
         {
-            "name": "jordi",
-            "email": "jordivega@iesebre.com"
+            "name": "arnau",
+            "email": "arnauserra@iesebre.com"
         }
     ]
 }
